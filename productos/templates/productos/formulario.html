@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Productos</title>
+        <link rel="stylesheet" href="{% url 'estilo_css' %}">
+    </head>
+
+    <body>
+        <h1>{{ accion }} de producto</h1>
+
+        <form method="post" action="{% if producto %}{% url 'editar_producto' producto.pk %}{% else %}{% url 'crear_producto' %}{% endif %}">
+            {% csrf_token %}
+
+            <p>
+                <label>Nombre:</label><br>
+                <input
+                    type="text"
+                    name="nombre"
+                    value="{{ producto.nombre|default_if_none:'' }}"
+                    required
+                >
+            </p>
+
+            <p>
+                <label>Categoria:</label><br>
+                <input
+                    type="text"
+                    name="categoria"
+                    value="{{ producto.categoria|default_if_none:'' }}"
+                    required
+                >
+            </p>
+
+            <p>
+                <label>Precio:</label><br>
+                <input
+                    type="text"
+                    name="precio"
+                    value="{{ producto.precio|default_if_none:'' }}"
+                    required
+                >
+            </p>
+
+            <p>
+                <label>Cantidad:</label><br>
+                <input
+                    type="text"
+                    name="cantidad"
+                    value="{{ producto.cantidad|default_if_none:'' }}"
+                    required
+                >
+            </p>
+
+            <button type="submit">
+                Guardar
+            </button>
+            <br>
+            <a href="{% url 'listar_productos' %}">Volver al listado</a>
+        </form>
+
+    </body>
+
+</html>

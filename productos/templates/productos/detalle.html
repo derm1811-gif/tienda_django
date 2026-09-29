@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle del producto</title>
+    <link rel="stylesheet" href="{% url 'estilo_css' %}">
+</head>
+<body>
+    <h1>Detalle del producto</h1>
+
+    <p><strong>Nombre:</strong> {{ producto.nombre }}</p>
+    <p><strong>Categoría:</strong> {{ producto.categoria }}</p>
+    <p><strong>Precio:</strong> {{ producto.precio }}</p>
+    <p><strong>Cantidad:</strong> {{ producto.cantidad }}</p>
+
+    <a href="{% url 'editar_producto' producto.pk %}">Editar</a>
+    |
+    <form method="post" action="{% url 'eliminar_producto' producto.pk %}" style="display: inline;">
+        {% csrf_token %}
+        <button type="submit" onclick="return confirm('¿Seguro que deseas eliminar este producto?')">Eliminar</button>
+    </form>
+    |
+    <a href="{% url 'listar_productos' %}">Volver al listado</a>
+</body>
+</html>
