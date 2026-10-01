@@ -27,6 +27,7 @@ def crear(request):
             categoria=request.POST["categoria"],
             precio=request.POST["precio"],
             cantidad=request.POST["cantidad"],
+            estado=request.POST.get("estado")=="on",
         )
         producto.save()
         return redirect("listar_productos")
@@ -42,6 +43,7 @@ def editar(request, pk):
         producto.categoria = request.POST["categoria"]
         producto.precio = request.POST["precio"]
         producto.cantidad = request.POST["cantidad"]
+        producto.estado = request.POST.get("estado") == "on"
         producto.save()
         return redirect("detalle_producto", pk=producto.pk)
 
