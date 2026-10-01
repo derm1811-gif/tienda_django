@@ -7,6 +7,21 @@
 <body>
     <h1>Categorías</h1>
 
+    <h2>Registrar categoría</h2>
+    <form method="post">
+        {% csrf_token %}
+        <p>
+            <label for="nombre">Nombre:</label><br>
+            <input type="text" id="nombre" name="nombre" maxlength="100" required>
+        </p>
+        <p>
+            <label for="observacion">Observación:</label><br>
+            <textarea id="observacion" name="observacion"></textarea>
+        </p>
+        <button type="submit">Guardar categoría</button>
+    </form>
+
+    <h2>Categorías registradas</h2>
     <table border="1">
         <tr>
             <th>Nombre</th>
